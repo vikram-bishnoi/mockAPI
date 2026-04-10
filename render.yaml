@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: mirakl-mock-server
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn mock_server:app
