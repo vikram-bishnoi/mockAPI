@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # --- CONFIGURATION ---
 FILE_NAME = "abc.csv"
-FILE_NAME1 = "abc-1.csv"
+
 FILE_SIZE_MB = 10
 
 @app.route('/api/download/csv', methods=['GET'])
@@ -13,10 +13,10 @@ def download_csv():
     # send_file is efficient and handles headers like Content-Length
     return send_file(FILE_NAME, mimetype='text/csv', as_attachment=True)
 
-@app.route('/api/download/csv1', methods=['GET'])
-def download_csv1():
+@app.route('/api/download/json/<counter>', methods=['GET'])
+def download_json(counter):
     # send_file is efficient and handles headers like Content-Length
-    return send_file(FILE_NAME1, mimetype='text/csv', as_attachment=True)
+    return send_file(f"records_batch_{counter}.json", mimetype='application/json', as_attachment=True)
 
 if __name__ == '__main__':
     
